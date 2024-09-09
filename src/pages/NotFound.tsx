@@ -3,7 +3,7 @@ import React from 'react'
 const NotFound: React.FC = () => {
   return (
     <div>
-        <h1>Ya done goofed</h1>
+        <h1>404 not found. Ya done goofed</h1>
     </div>
   )
 }

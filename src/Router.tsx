@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import LandingPage from "./pages/LandingPage"
+import LoginPage from "./pages/LoginPage"
 import NotFound from "./pages/NotFound"
 
 const Router = () => {
@@ -7,7 +8,8 @@ const Router = () => {
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<LandingPage/>} />
-            <Route path="*" element={<NotFound/>}/>
+            <Route path="/login" element={<LoginPage/>} />
+            <Route path="*" element={<NotFound/>} />
         </Routes>
     </BrowserRouter>
   )
