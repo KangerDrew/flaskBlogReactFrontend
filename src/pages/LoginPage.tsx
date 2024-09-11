@@ -1,12 +1,34 @@
 import React, { useState } from 'react'
+import httpClient from '../httpClient';
+
 
 export const LoginPage: React.FC = () => {
 
-	const [userID, setUserID] = useState<string>("");
+	const [username, setUsername] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 
-	const loginUser = () => {
-		console.log(userID, password);
+	const loginUser = async () => {
+		console.log(username, password);
+
+		const formData = new URLSearchParams();
+		formData.append("username", username);
+		formData.append("password", password);
+
+		try{
+			const resp = await httpClient.post("http://127.0.0.1:5000/login", formData, {
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+				},
+			});
+
+			console.log(resp.data);
+			window.location.href = "/"
+
+		} catch (error) {
+			alert("Failed to Login!!!")
+			console.error("Failed to login:", error);
+		}
+			
 	}
 
   	return (
@@ -17,8 +39,8 @@ export const LoginPage: React.FC = () => {
 				<label>User ID</label>
 				<input
 					type="text"
-					value={userID}
-					onChange={(e) => setUserID(e.target.value)}
+					value={username}
+					onChange={(e) => setUsername(e.target.value)}
 				/>
 			</div>
 			<div>
